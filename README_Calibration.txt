@@ -1,4 +1,4 @@
-! This FEniCS code finds the paramter $delta$ in the configurational external force $c_e$ introduced in [1]. The configurational force is part of a newly 
+! The FEniCS code 'Calibration_of_ce.py' finds the paramter $delta$ in the configurational external force $c_e$ introduced in [1]. The configurational force is part of a newly 
 proposed phase-field model that can describe fracture nucleation in all settings, be it from large pre-existing cracks, small pre-existing cracks,
 smooth and non-smooth boundary points, or within the bulk of structures subjected to arbitrary quasistatic loadings, while keeping undisturbed the ability of the standard phase-field formulation to model crack propagation.
 The parameter $delta$ needs to be calibrated to describe fracture nucleation (propagation) from large pre-existing cracks. See Section 4.3.2 in [1] for more details. In short, this code solves the classical problem of center cracked test specimen in LEFM and the phase-field solution is compared with the analytical solution.
