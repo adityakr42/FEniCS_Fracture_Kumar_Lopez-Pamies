@@ -318,17 +318,6 @@ while t-stepsize < T:
 		with open('Alumina_SENT.txt', 'a') as rfile: 
 			rfile.write("%s %s %s\n" % (str(t), str(zmin), str(z_x)))
 	
-	####Plot solution on incremental steps
-	if step % 50==0:
-		file_results = XDMFFile( "/fenics/PA_SENT2_" + str(step) + ".xdmf" )
-		file_results.parameters["flush_output"] = True
-		file_results.parameters["functions_share_mesh"] = True
-		u.rename("u", "displacement field")
-		z.rename("z", "phase field")
-		file_results.write(u,step)
-		file_results.write(z,step)
-	
-	
 	if z_x<0.1:
 		t1=t
 		break
