@@ -56,7 +56,8 @@ elif eps>lch/4.0 and eps<=lch/2.0:
 else:
 	epsbyh=15.0
 
-mesh=RectangleMesh(comm, Point(0.0,0.0), Point(W,L), int(W/(32*eps/epsbyh)), int(L/(32*eps/epsbyh)))
+h=eps/epsbyh
+mesh=RectangleMesh(comm, Point(0.0,0.0), Point(W,L), int(W/(32*h)), int(L/(32*h)))
 domain1 = CompiledSubDomain("x[1]<lch*4", lch=lch)
 ir=0
 while ir<2:
@@ -65,7 +66,7 @@ while ir<2:
 	mesh = refine(mesh,d_markers, True)
 	ir+=1
 
-domain2 = CompiledSubDomain("x[1]<2.5*eps && x[0]<a*1.05 && x[0]>a*0.95", a=ac, eps=eps)
+domain2 = CompiledSubDomain("x[1]<2.5*eps && x[0]<a+h*8*4 && x[0]>a-h*8*4", a=ac, eps=eps)
 ir=0
 while ir<3:
 	d_markers = MeshFunction("bool", mesh, 2, False)
@@ -86,7 +87,7 @@ left =  CompiledSubDomain("near(x[0], side, tol) && on_boundary", side = 0.0, to
 front =  CompiledSubDomain("near(x[0], side, tol) && on_boundary", side = W, tol=1e-4)
 top =  CompiledSubDomain("near(x[1], side, tol) && on_boundary", side = L, tol=1e-4)
 bottom = CompiledSubDomain("x[1]<1e-4 && x[0]>a-1e-2", a=ac)
-cracktip = CompiledSubDomain("x[1]<1e-4 && x[0]>a-0.5 && x[0]<a+1e-4 ", a=ac)
+cracktip = CompiledSubDomain("x[1]<1e-4 && x[0]>a-h*8*2 && x[0]<a+1e-4 ", a=ac)
 outer= CompiledSubDomain("x[1]>L/10", L=L)	
 	
 # Define Dirichlet boundary conditions
