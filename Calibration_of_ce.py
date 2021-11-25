@@ -104,7 +104,7 @@ bct_z2 = DirichletBC(Y, cz2, cracktip)
 bcs_z=[bct_z, bct_z2]
 
 # Define Neumann boundary conditions
-sigma_external=1.25*sqrt(E*Gc/np.pi/ac)/((1-0.025*(ac/100)**2+0.06*(ac/100)**4)/sqrt(np.cos(np.pi*ac/2/100)))
+sigma_external=1.25*sqrt(E*Gc/np.pi/ac)/((1-0.025*(ac/W)**2+0.06*(ac/W)**4)/sqrt(np.cos(np.pi*ac/2/W)))
 Tf  = Expression(("t*0.0", "t*sigma"),degree=1,t=0, sigma=sigma_external)  # Traction force on the top boundary 
 # marking boundary on which Neumann bc is applied
 boundary_subdomains = MeshFunction("size_t", mesh, 1)
